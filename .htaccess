@@ -1,0 +1,15 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # 1. Route CSS/JS requests to the compiled dist/assets directory
+  RewriteRule ^assets/(.*)$ dist/assets/$1 [L]
+
+  # 2. Support React routing and smooth scroll URLs by redirecting missing files to index.php
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . index.php [L]
+</IfModule>
+
+# Disable folder directory listing for security
+Options -Indexes
