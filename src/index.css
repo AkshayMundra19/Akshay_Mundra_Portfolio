@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+/* -------------------------------------------------------------
+ * Custom Design System Variables (Light / Dark Modes)
+ * ------------------------------------------------------------- */
+:root {
+  --bg-primary: #F0F4FF;
+  --bg-secondary: #FFFFFF;
+  --bg-card: #F8FAFF;
+  --text-primary: #0D1B2A;
+  --text-secondary: #2D3E50;
+  --text-muted: #5A6E83;
+  --accent-cyan: #0891B2;
+  --accent-purple: #6D28D9;
+  --accent-green: #059669;
+  --border: #CBD5E1;
+  --shadow: 0 4px 24px rgba(8,145,178,0.08);
+  --font-sans: 'Inter', sans-serif;
+  --font-display: 'Poppins', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+.dark {
+  --bg-primary: #0A1628;
+  --bg-secondary: #0F2038;
+  --bg-card: #132742;
+  --text-primary: #F0F4FF;
+  --text-secondary: #CBD5E1;
+  --text-muted: #94A3B8;
+  --accent-cyan: #06B6D4;
+  --accent-purple: #8B5CF6;
+  --accent-green: #10B981;
+  --border: #1E293B;
+  --shadow: 0 4px 24px rgba(6,182,212,0.15);
+}
+
+/* Tailwind Theme Configuration Mapping */
+@theme {
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-bg-card: var(--bg-card);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-accent-cyan: var(--accent-cyan);
+  --color-accent-purple: var(--accent-purple);
+  --color-accent-green: var(--accent-green);
+  --color-border-custom: var(--border);
+  --shadow-custom: var(--shadow);
+  
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
+}
+
+/* -------------------------------------------------------------
+ * Global Rules
+ * ------------------------------------------------------------- */
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}
+
+/* Scrollbar customization */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent-cyan);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-purple);
+}
+
+/* Custom glow utility effects */
+.glow-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.glow-btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120%;
+  height: 0;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translate(-50%, -50%) rotate(45deg);
+  transition: all 0.5s ease;
+  z-index: -1;
+}
+
+.glow-btn:hover::after {
+  height: 300%;
+}
+
+.glow-btn-primary {
+  background: var(--accent-cyan);
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 14px rgba(8, 145, 178, 0.4);
+}
+
+.glow-btn-primary:hover {
+  background: var(--accent-purple);
+  box-shadow: 0 4px 14px rgba(109, 40, 217, 0.4);
+  transform: translateY(-2px);
+}
+
+.glow-btn-outline {
+  border: 2px solid var(--accent-cyan);
+  color: var(--accent-cyan) !important;
+}
+
+.glow-btn-outline:hover {
+  background: var(--accent-cyan);
+  color: #FFFFFF !important;
+  transform: translateY(-2px);
+}
+
+/* Timeline vertical line */
+.timeline-line {
+  position: absolute;
+  left: 16px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--accent-cyan), var(--accent-purple));
+}
+@media (min-width: 768px) {
+  .timeline-line {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

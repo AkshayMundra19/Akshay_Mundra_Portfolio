@@ -1,0 +1,27 @@
+# Akshay Mundra | Python Developer & AI Enthusiast
+
+Akshay Mundra is a Python Developer and AI Enthusiast pursuing a B.Tech in Computer Science at Poornima College of Engineering, Jaipur (2024–2028).
+
+## Technical Toolkit
+- **Languages**: Python, Java, C++, SQL, Flutter/Kotlin
+- **Frameworks**: React, TypeScript, Pandas & NumPy, Matplotlib, Seaborn
+- **Tools**: Git/GitHub, VS Code, Android Studio, MySQL, Vite, Gemini API, Google Maps API
+
+## Professional Experience
+- **Python Developer Intern** at Renao Robotics Pvt. Ltd. (Jun 2025)
+  - Engineered Python automation scripts.
+  - Developed a Pillow-based multiple ID card images generator.
+
+## Key Projects
+- **EduBridge** (AI Learning Platform): National Finalist at IIT Bombay Techfest AI Eduthon 2025. Creates customized pathways and quiz cards using Gemini APIs.
+- **BlockTrip** (Tourist Safety System): Nominee at Smart India Hackathon 2025. Utilizes location services and offline emergency routing.
+- **HomeValuate AI** (House Price Prediction): Machine Learning regression app powered by FastAPI, featuring market analytics, comparison tables, and loan calculators. Live at: https://house-price-prediction-main.vercel.app/
+
+## Contact & Links
+- **Email**: akshaymundra07@gmail.com
+- **Phone**: +91 9166678361
+- **Location**: Jaipur, Rajasthan, India
+- **GitHub**: https://github.com/AkshayMundra19
+- **LinkedIn**: https://linkedin.com/in/akshay-mundra0101
+- **Twitter/X**: https://x.com/AkshayMundra111
+- **Resume**: https://drive.google.com/file/d/1qK3d4cBk7d2n5HWm87vxXgu3A1rgi1Wk/view?usp=drive_link
