@@ -1,14 +1,16 @@
 <?php
-// CORS & JSON Response Headers
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
-header("Content-Type: application/json; charset=UTF-8");
+// Only send CORS and JSON headers if config is NOT loaded by the main web index.php (SSR)
+if (basename($_SERVER['SCRIPT_NAME']) !== 'index.php') {
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+    header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
+    header("Content-Type: application/json; charset=UTF-8");
 
-// Handle preflight OPTIONS requests
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    http_response_code(200);
-    exit();
+    // Handle preflight OPTIONS requests
+    if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+        http_response_code(200);
+        exit();
+    }
 }
 
 // Database Credentials (support environment variables for production environments like Railway/Heroku)
