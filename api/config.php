@@ -13,11 +13,11 @@ if (basename($_SERVER['SCRIPT_NAME']) !== 'index.php') {
     }
 }
 
-// Database Credentials (support environment variables for production environments like Railway/Heroku)
-define('DB_HOST', getenv('DB_HOST') ?: 'localhost');
-define('DB_NAME', getenv('DB_NAME') ?: 'portfolio_db');
-define('DB_USER', getenv('DB_USER') ?: 'root');
-define('DB_PASS', getenv('DB_PASS') !== false ? getenv('DB_PASS') : '');
+// Database Credentials
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'u653354902_portfolio');
+define('DB_USER', 'u123456789_akshaymundra19');
+define('DB_PASS', 'Akshay@19032004');
 
 try {
     $pdo = new PDO(
@@ -31,11 +31,10 @@ try {
         ]
     );
 } catch (PDOException $e) {
-    // Graceful error state representation for portfolio API client
     http_response_code(500);
     echo json_encode([
         "error" => "Database connection failed",
-        "message" => "Please ensure your MySQL server is running and configured correctly."
+        "message" => "Could not connect to the database. Verify your credentials in config.php."
     ]);
     exit();
 }
