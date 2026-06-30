@@ -226,6 +226,10 @@ if (file_exists($buildHtmlPath)) {
     // Inject Semantic pre-rendered content inside root div for crawler indexing
     $htmlContent = str_replace('<div id="root"></div>', "<div id=\"root\">$semanticHtml</div>", $htmlContent);
     
+    // Rewrite asset paths to resolve correctly on Hostinger subdomains/subfolders
+    $htmlContent = str_replace('href="/assets/', 'href="/dist/assets/', $htmlContent);
+    $htmlContent = str_replace('src="/assets/', 'src="/dist/assets/', $htmlContent);
+    
     echo $htmlContent;
 } else {
     // fallback template if Vite build hasn't run or we are debugging
