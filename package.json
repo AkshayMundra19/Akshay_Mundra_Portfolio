@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "postbuild": "node -e \"const fs = require('fs'); if (fs.existsSync('dist/index.html')) fs.renameSync('dist/index.html', 'dist/index.php')\"",
+    "postbuild": "node -e \"const fs = require('fs'); if (fs.existsSync('dist/index.html')) fs.copyFileSync('dist/index.html', 'dist/index.php'); if (fs.existsSync('dist/assets')) { if (fs.existsSync('assets')) fs.rmSync('assets', { recursive: true, force: true }); fs.cpSync('dist/assets', 'assets', { recursive: true }); }\"",
     "lint": "eslint .",
     "preview": "vite preview"
   },
