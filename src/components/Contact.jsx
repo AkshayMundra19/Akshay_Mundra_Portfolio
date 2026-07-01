@@ -74,7 +74,17 @@ export default function Contact() {
           body: JSON.stringify(formData)
         });
 
-        const result = await response.json();
+        let result = {};
+        const contentType = response.headers.get("content-type");
+        if (contentType && contentType.includes("application/json")) {
+          result = await response.json();
+        } else {
+          // Non-JSON response (e.g. server error, gateway timeout)
+          const text = await response.text();
+          throw new Error(
+            text.substring(0, 100) || `Backend server returned status ${response.status}. Please make sure your local PHP server is running on port 8000.`
+          );
+        }
 
         if (response.ok && result.success) {
           setStatus({ success: true, message: result.message || 'Message sent successfully!' });
@@ -225,7 +235,7 @@ export default function Contact() {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    placeholder="John Doe"
+                    placeholder="Your name"
                     className="w-full px-4 py-3 rounded-xl bg-bg-secondary border border-border-custom/40 focus:border-accent-cyan focus:ring-1 focus:ring-accent-cyan outline-none text-text-primary transition-all duration-200"
                   />
                 </div>
@@ -240,7 +250,7 @@ export default function Contact() {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    placeholder="john@example.com"
+                    placeholder="yourname@example.com"
                     className="w-full px-4 py-3 rounded-xl bg-bg-secondary border border-border-custom/40 focus:border-accent-cyan focus:ring-1 focus:ring-accent-cyan outline-none text-text-primary transition-all duration-200"
                   />
                 </div>
