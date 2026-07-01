@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Phone, MapPin, Copy, Check, Send } from 'lucide-react';
 import usePortfolioData from '../hooks/usePortfolioData';
+import emailjs from '@emailjs/browser';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
 
@@ -42,21 +43,45 @@ export default function Contact() {
       setIsSubmitting(true);
       setStatus(null);
 
-      const response = await fetch(`${API_BASE_URL}/contact.php`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      });
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-      const result = await response.json();
+      if (serviceId && templateId && publicKey) {
+        // Send via EmailJS
+        const templateParams = {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject || 'New Portfolio Contact Message',
+          message: formData.message,
+          to_name: 'Akshay Mundra',
+        };
 
-      if (response.ok && result.success) {
-        setStatus({ success: true, message: result.message || 'Message sent successfully!' });
-        setFormData({ name: '', email: '', subject: '', message: '' });
+        const result = await emailjs.send(serviceId, templateId, templateParams, publicKey);
+        if (result.status === 200) {
+          setStatus({ success: true, message: 'Message sent successfully via EmailJS!' });
+          setFormData({ name: '', email: '', subject: '', message: '' });
+        } else {
+          throw new Error('Failed to send message via EmailJS');
+        }
       } else {
-        throw new Error(result.error || 'Failed to submit the contact form.');
+        // Fallback to PHP API endpoint
+        const response = await fetch(`${API_BASE_URL}/contact.php`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          setStatus({ success: true, message: result.message || 'Message sent successfully!' });
+          setFormData({ name: '', email: '', subject: '', message: '' });
+        } else {
+          throw new Error(result.error || 'Failed to submit the contact form.');
+        }
       }
     } catch (err) {
       console.error(err);
