@@ -16,7 +16,7 @@ if (basename($_SERVER['SCRIPT_NAME']) !== 'index.php') {
 // Database Credentials
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'u653354902_portfolio');
-define('DB_USER', 'u123456789_akshaymundra19');
+define('DB_USER', 'u653354902_akshaymundra19');
 define('DB_PASS', 'Akshay@19032004');
 
 try {

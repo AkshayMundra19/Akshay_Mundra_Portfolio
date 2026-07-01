@@ -1,5 +1,6 @@
 import React from 'react';
 import { Github, Linkedin, Twitter, Mail, ArrowUp } from 'lucide-react';
+import logoUrl from '../assets/logo.jpg';
 import usePortfolioData from '../hooks/usePortfolioData';
 
 export default function Footer() {
@@ -19,11 +20,18 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
         
         {/* Left copyright branding */}
-        <div className="text-center md:text-left space-y-1">
-          <span className="font-extrabold text-sm tracking-widest text-text-primary uppercase">
-            {user.name || 'Akshay Mundra'}
-          </span>
-          <p className="text-xs text-text-muted">
+        <div className="flex flex-col items-center md:items-start gap-2.5">
+          <div className="flex items-center gap-2">
+            <img 
+              src={logoUrl} 
+              alt="Akshay Mundra Logo" 
+              className="w-7 h-7 rounded-lg object-contain border border-border-custom/20"
+            />
+            <span className="font-extrabold text-sm tracking-widest text-text-primary uppercase">
+              {user.name || 'Akshay Mundra'}
+            </span>
+          </div>
+          <p className="text-xs text-text-muted text-center md:text-left">
             &copy; {currentYear} All rights reserved. Created with React, PHP, &amp; MySQL.
           </p>
         </div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Sun, Moon } from 'lucide-react';
+import logoUrl from '../assets/logo.jpg';
 
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState('hero');
@@ -76,9 +77,14 @@ export default function Navbar() {
         <a 
           href="#hero" 
           onClick={(e) => handleNavClick(e, 'hero')}
-          className="text-xl font-black tracking-wider text-accent-cyan hover:text-accent-purple transition-colors duration-300 select-none"
+          className="flex items-center gap-2.5 text-xl font-black tracking-wider text-accent-cyan hover:text-accent-purple transition-all duration-300 select-none group"
         >
-          AKSHAY.M
+          <img 
+            src={logoUrl} 
+            alt="Akshay Mundra Logo" 
+            className="w-9 h-9 rounded-xl object-contain border border-border-custom/20 group-hover:scale-105 transition-transform duration-300"
+          />
+          <span>AKSHAY.M</span>
         </a>
 
         {/* Desktop Menu */}
